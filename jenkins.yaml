@@ -4,9 +4,12 @@ jenkins:
   mode: NORMAL
   scmCheckoutRetryCount: 3
 
-security:
-  apiToken:
-    creationAllowed: true
+jenkins:
+  security:
+    apiToken:
+      creationOfLegacyTokenEnabled: false
+      tokenGenerationOnCreationEnabled: true
+      usageStatisticsEnabled: true
 
 unclassified:
   location:
