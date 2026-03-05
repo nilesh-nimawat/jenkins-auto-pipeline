@@ -1,0 +1,37 @@
+jenkins:
+  systemMessage: "Welcome to Nilesh's Automated K8s Portal Jenkins"
+  numExecutors: 2
+  mode: NORMAL
+  scmCheckoutRetryCount: 3
+
+security:
+  apiToken:
+    creationAllowed: true
+
+unclassified:
+  location:
+    url: "http://localhost:8080/"
+
+jobs:
+  - script: >
+      pipelineJob('self_k8s_portal_automation') {
+        description('Automated Pipeline for K8s Portal Deployment')
+        keepDependencies(false)
+        
+        # This replaces your XML <scm> section
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/nilesh-nimawat/self_k8s_portal.git')
+                }
+                branches('*/main')
+              }
+            }
+            scriptPath('Jenkinsfile')
+            lightweight(true)
+          }
+        }
+        
+      }

@@ -1,4 +1,4 @@
-<flow-definition plugin="workflow-job">
+<!-- <flow-definition plugin="workflow-job">
   <description>Auto Created Pipeline</description>
 
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition">
@@ -26,4 +26,33 @@ pipeline {
     <sandbox>true</sandbox>
   </definition>
 
+</flow-definition> -->
+
+
+<flow-definition plugin="workflow-job">
+<description>Documentation. In a professional environment, this is used to explain what the pipeline is for, who owns it, and which Jira ticket or project it relates to.</description>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition">
+  <!-- go to external service  -->
+
+    <scm class="hudson.plugins.git.GitSCM">
+     <!-- git ki scm use ha -->
+
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>https://github.com/nilesh-nimawat/self_k8s_portal.git</url>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>*/main</name>
+          <!-- * is wildcard help you to match branch -->
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+
+    </scm>
+    <lightweight>true</lightweight>
+    <scriptPath>Jenkinsfile</scriptPath>
+
+  </definition>
 </flow-definition>

@@ -17,13 +17,8 @@ echo "Creating Jenkins Pipeline..."
 curl -X POST "$JENKINS_URL/createItem?name=$JOB_NAME" \
 --user "$USER:$TOKEN" \
 -H "Content-Type: application/xml" \
---data-binary @config.xml
+--data-binary @config.xml  
+
 
 echo "Pipeline Created Successfully"
 
-echo "Triggering Pipeline..."
-
-curl -X POST "$JENKINS_URL/job/$JOB_NAME/build" \
---user "$USER:$TOKEN"
-
-echo "Pipeline Triggered"
